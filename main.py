@@ -3,7 +3,7 @@ import telebot
 import requests
 from telebot.types import InlineKeyboardButton
 
-bot = telebot.TeleBot('2058045981:AAGhchBbMrNCY5e6WhZIXXjnTCcuXeaGLIM')
+bot = telebot.TeleBot('2107481142:AAHTznOhLMhe-X6TO58hDMs4cA-5wzUJriA')
 
 while True:
     try:
@@ -17,7 +17,7 @@ while True:
         @bot.message_handler(commands=['start'])
         def start_message(message):
             bot.send_message(message.chat.id,
-                             'Welcome! Click the "Generate email" button to generate your temporary email. Click the "Refresh inbox" button to check your e-mail.',
+                             'Hey User., Welcome to TempMail Bot \nUsage:_\nTo Generate emails by clicking on the button "Generate email"\nTo refresh your inbox click on the button "Refresh inbox". After a new letter arrives, you will see a button with a subject line, click on this button to read the message. \n░͙ ̈ ⋆ ͙ ̈ ⋆ Dev : @rizad__x96⋆͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ',
                              reply_markup=keyboard)
 
 
@@ -29,13 +29,13 @@ while True:
                 ekeyboard.add(InlineKeyboardButton(text='Generate email'))
                 ekeyboard.add(InlineKeyboardButton(text='Refresh inbox\n[' + str(email) + "]"))
                 ekeyboard.add(InlineKeyboardButton(text='About'))
-                bot.send_message(message.chat.id, "Your temporary e-mail:")
+                bot.send_message(message.chat.id, "Your Temporary E-mail:")
                 bot.send_message(message.chat.id, str(email), reply_markup=ekeyboard)
             elif message.text.lower() == 'refresh inbox':
                 bot.send_message(message.chat.id, 'First, generate an email', reply_markup=keyboard)
             elif message.text.lower() == 'about':
                 bot.send_message(message.chat.id,
-                                 '░░░░░░░░About:_\n░To refresh your inbox click on the button "Refresh inbox". After a new letter arrives, you will see a button with a subject line, click on this button to read the message. \n░ ⋆͙ ̈ ⋆ ͙ ̈  ͙Thanks for using⋆͙ ̈ ⋆ ͙ ̈  ⋆ ͙ ̈ ⋆ ͙ ̈ \n░͙ ̈ ⋆ ͙ ̈ ⋆ dev by @rizad__x96⋆͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ')
+                                 '➪<b>Project Name</b> : [M4IL404](https://t.me/M4IL404BOT)\n➪<b>Author</b> : [@rizad_x96](https://t.me/rizad_x96)\n➪<b>Language</b> : Python")
             elif message.text.lower()[14] == "[":
                 email = message.text.lower()[15:message.text.lower().find("]")]
                 bkeyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
