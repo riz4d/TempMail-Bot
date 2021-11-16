@@ -35,7 +35,7 @@ while True:
                 bot.send_message(message.chat.id, 'First, generate an email', reply_markup=keyboard)
             elif message.text.lower() == 'about':
                 bot.send_message(message.chat.id,
-                                 '➪<b>Project Name</b> : [M4IL404](https://t.me/M4IL404BOT)\n➪<b>Author</b> : [@rizad_x96](https://t.me/rizad_x96)\n➪<b>Language</b> : Python")
+                                 '➪<b>Project Name</b> : [M4IL404](https://t.me/M4IL404BOT)\n➪<b>Author</b> : [@rizad_x96](https://t.me/rizad_x96)\n➪<b>Language</b> : Python')
             elif message.text.lower()[14] == "[":
                 email = message.text.lower()[15:message.text.lower().find("]")]
                 bkeyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
