@@ -1,0 +1,12 @@
+{
+	"name": "TempMail",
+	"description": "Telegram MailBot",
+	"repository": "https://github.com/riz4d/TempMail-Bot",
+	"env": {
+	},
+	"buildpacks": [
+		{
+			"url": "heroku/python"
+		}
+	]
+}
