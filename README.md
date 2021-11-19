@@ -10,3 +10,7 @@ A python oriented telegram bot for generating temporary Emails with API of **_ht
 ## Deployment
 
 [![Deploy On Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/riz4d/TempMail-Bot)
+
+## Developer InFo
+
+[![Developer](https://contributors-img.web.app/image?repo=riz4d/TempMail-Bot)](https://github.com/riz4d)
