@@ -20,6 +20,10 @@ Put the bot token on `main.py` at `bot = telebot.TeleBot('**********************
 
 [![Deploy On Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/riz4d/TempMail-Bot)
 
+## Issues 
+
+[Submit Issues](https://github.com/riz4d/TempMail-Bot/issues)
+
 ## Developer InFo
 
 [![Developer](https://contributors-img.web.app/image?repo=riz4d/TempMail-Bot)](https://github.com/riz4d)
