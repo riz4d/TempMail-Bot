@@ -1,6 +1,6 @@
 {
 	"name": "TempMail",
-	"description": "Telegram MailBot",
+	"description": "A python oriented telegram bot for generating temporary Emails Developed By @riz4d with API of https://www.1secmail.com",
 	"repository": "https://github.com/riz4d/TempMail-Bot",
 	"env": {
 	},
