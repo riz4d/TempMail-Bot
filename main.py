@@ -1,9 +1,12 @@
-# -*- coding: utf8 -*-
+# copyright 2020-21 @Mohamed Rizad
+# Telegram @riz4d
+# Instagram @riz.4d
 import telebot
 import requests
 from telebot.types import InlineKeyboardButton
 
-bot = telebot.TeleBot('5076765697:AAGDG3DhuhvKoLxqLmIyfFajxSIDMLEZqOY')
+# Fillout Here The BotToken it gets from botfather further queries @riz4d 0n telegram
+bot = telebot.TeleBot('Bottoken here!!')
 
 while True:
     try:
@@ -17,7 +20,7 @@ while True:
         @bot.message_handler(commands=['start'])
         def start_message(message):
             bot.send_message(message.chat.id,
-                             'Hey User., Welcome to TempMail Bot \nUsage:_\nTo Generate emails by clicking on the button "Generate email"\nTo refresh your inbox click on the button "Refresh inbox". After a new letter arrives, you will see a button with a subject line, click on this button to read the message. \n░͙ ̈ ⋆ ͙ ̈ ⋆ Dev : @rizad__x96⋆͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ⋆ ͙ ̈ ',
+                             'Hey User., Welcome to MysteryMail Bot \nUsage:_\nTo Generate emails by clicking on the button "Generate email"\nTo refresh your inbox click on the button "Refresh inbox". After a new letter arrives, you will see a button with a subject line, click on this button to read the message. \n\n Dev : @riz4d',
                              reply_markup=keyboard)
 
 
@@ -35,7 +38,7 @@ while True:
                 bot.send_message(message.chat.id, 'First, generate an email', reply_markup=keyboard)
             elif message.text.lower() == 'about':
                 bot.send_message(message.chat.id,
-                                 '➪<b>Project Name</b> : [M4IL404](https://t.me/M4IL404BOT)\n➪<b>Author</b> : [@rizad_x96](https://t.me/rizad_x96)\n➪<b>Language</b> : Python')
+                                 'What is Mystery Mail?\n- it is a free email service that allows to receive email at a temporary address that self-destructed after a certain time elapses. It is also known by names like tempmail, 10minutemail, 10minmail, throwaway email, fake-mail , fake email generator, burner mail or trash-mail\n\nHow Mystery Mail Become Safer You?\n- Using the temporary mail allows you to completely protect your real mailbox against the loss of personal information. Your temporary e-mail address is completely anonymous. Your details: information about your person and users with whom you communicate, IP-address, e-mail address are protected and completely confidential.\n\n➪ Bot Name : MysteryMail\n➪ Author : @riz4d\n➪ Language : Python \n➪ Donate : https://www.paypal.com/paypalme/rizadx96')
             elif message.text.lower()[14] == "[":
                 email = message.text.lower()[15:message.text.lower().find("]")]
                 bkeyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
@@ -57,15 +60,15 @@ while True:
                                 text=str(subject) + "\n from: " + fromm + " in " + "[id" + str(id) + "][" + str(
                                     email) + "]"))
                             bot.send_message(message.chat.id,
-                                             "Message Subject: " + subject + " From: " + fromm + " Date:" + date,
+                                             "Subject: " + subject + "\n From: " + fromm + "\n Date:" + date,
                                              reply_markup=bkeyboard)
                             count = i + 1
-                        bot.send_message(message.chat.id, "A total of " + str(
-                            count) + " messages found\nClick on the button to read the message")
+                        bot.send_message(message.chat.id, "Here " + str(
+                            count) + " message we're found\nClick on the below button to read the message\n\n Further Queries @riz4d")
                     else:
                         bot.send_message(message.chat.id, 'Nothing found', reply_markup=bkeyboard)
                 except BaseException:
-                    bot.send_message(message.chat.id, '...', reply_markup=bkeyboard)
+                    bot.send_message(message.chat.id, 'No messages were received...', reply_markup=bkeyboard)
             elif message.text.lower().find("[id"):
                 try:
                     data = message.text.lower()[message.text.lower().find("[id"):]
@@ -74,7 +77,7 @@ while True:
                     msg = requests.get("https://www.1secmail.com/api/v1/?action=readMessage&login=" + email[:email.find(
                         "@")] + "&domain=" + email[email.find("@") + 1:] + "&id=" + id).json()
                     bot.send_message(message.chat.id,
-                                     'Message \n   From: ' + msg['from'] + "\n   Subject: " + msg[
+                                     'Message ✉️\n\n   From: ' + msg['from'] + "\n   Subject: " + msg[
                                          'subject'] + "\n   Date: " + msg[
                                          'date'] + "\n   text: " + msg['textBody'])
                 except BaseException:
@@ -84,3 +87,5 @@ while True:
         bot.polling(none_stop=True, interval=1, timeout=5000)
     except BaseException:
         pass
+        
+# Stay tuned for more : Instagram @riz.4d
