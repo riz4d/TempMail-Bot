@@ -30,6 +30,6 @@ Put the bot token on `main.py` at `bot = telebot.TeleBot('**********************
 
 [![Developer](https://contributors-img.web.app/image?repo=riz4d/TempMail-Bot)](https://github.com/riz4d)
 
-[![Telegram](https://img.shields.io/badge/Telegram-grey?style=for-the-badge&logo=telegram)](https://telegram.me/rizad_x96)
+[![Telegram](https://img.shields.io/badge/Telegram-grey?style=for-the-badge&logo=telegram)](https://telegram.me/riz4d)
 
-[![Instagram](https://img.shields.io/badge/InstaGram-grey?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/rizad__x96)
+[![Instagram](https://img.shields.io/badge/InstaGram-grey?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/riz.4d)
