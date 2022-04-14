@@ -4,10 +4,21 @@
 	"logo": "https://j.top4top.io/p_2092uhkq40.jpg",
 	"repository": "https://github.com/riz4d/TempMail-Bot",
 	"env": {
-	},
-	"buildpacks": [
-		{
-			"url": "heroku/python"
-		}
-	]
+        "BOT_TOKEN": {
+            "description": "Your Telegram Bot Token from @BotFather",
+            "value": ""
+        }
+    },
+    "addons": [],
+    "buildpacks": [
+        {
+            "url": "heroku/python"
+        }
+    ],
+    "formation": {
+        "worker": {
+            "quantity": 1,
+            "size": "free"
+        }
+    }
 }
