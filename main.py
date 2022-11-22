@@ -1,100 +1,92 @@
 # copyright 2020-22 @Mohamed Rizad
 # Telegram @riz4d
 # Instagram @riz.4d
-import telebot
-import requests
-from telebot.types import InlineKeyboardButton
+from pyrogram import *
+import requests as re
+from Config import *
+from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup
+import wget
+import os 
 
-# Fillout Here The BotToken it gets from botfather further queries @riz4d 0n telegram
-bot = telebot.TeleBot('< BOT_TOKEN here >')
+buttons=InlineKeyboardMarkup(
+                             [
+                             [
+            InlineKeyboardButton('Generate', callback_data='generate'),
+            InlineKeyboardButton('Refresh', callback_data='refresh'),
+            InlineKeyboardButton('Close', callback_data='close')
+                   ] 
+                             ])
 
-keyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-keyboard.add(InlineKeyboardButton(text='Generate email'))
-keyboard.add(InlineKeyboardButton(text='Refresh inbox'))
-keyboard.add(InlineKeyboardButton(text='About'))
-@bot.message_handler(commands=['start'])
-def start_message(message):
-   bot.send_message(message.chat.id,
-'''
-Hey.,
-Welcome to MysteryMail Bot
-Usage:
-➪ To Generate emails by clicking on the button "Generate email"
-➪ To refresh your inbox click on the button "Refresh inbox"
-➪ After a new letter arrives, you will see a button with a subject line, click on this button to read the message.
-                              
-Dev : @riz4d
-''')
-   
-@bot.message_handler(content_types=['text'])
-def send_text(message):
-    if message.text.lower() == 'generate email':
-        email = requests.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1").json()[0]
-        ekeyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-        ekeyboard.add(InlineKeyboardButton(text='Generate email'))
-        ekeyboard.add(InlineKeyboardButton(text='Refresh inbox\n[' + str(email) + "]"))
-        ekeyboard.add(InlineKeyboardButton(text='About'))
-        bot.send_message(message.chat.id, "Your Temporary E-mail:")
-        bot.send_message(message.chat.id, str(email), reply_markup=ekeyboard)
-    elif message.text.lower() == 'refresh inbox':
-        bot.send_message(message.chat.id, 'First, generate an email', reply_markup=keyboard)
-    elif message.text.lower() == 'about':
-        bot.send_message(message.chat.id,
-'''
-What is Mystery Mail?
+msg_buttons=InlineKeyboardMarkup(
+                             [
+                             [
+            InlineKeyboardButton('View message', callback_data='view_msg'),
+            InlineKeyboardButton('Close', callback_data='close')
+                   ] 
+                             ])
 
-- it is a free email service that allows to receive email at a temporary address that self-destructed after a certain time elapses. It is also known by names like tempmail, 10minutemail, 10minmail, throwaway email, fake-mail , fake email generator, burner mail or trash-mail
 
-How Mystery Mail Become Safer You?
+# Fillout The variables in Config.py further queries @riz4d 0n telegram
 
-- Using the temporary mail allows you to completely protect your real mailbox against the loss of personal information. Your temporary e-mail address is completely anonymous. Your details: information about your person and users with whom you communicate, IP-address, e-mail address are protected and completely confidential.
-
-➪ Bot Name : MysteryMail
-➪ Author : @riz4d
-➪ Language : Python''')
-    elif message.text.lower()[14] == "[":
-        email = message.text.lower()[15:message.text.lower().find("]")]
-        bkeyboard = telebot.types.ReplyKeyboardMarkup(resize_keyboard=True)
-        bkeyboard.add(InlineKeyboardButton(text='Refresh inbox\n[' + str(email) + "]"))
-        bkeyboard.add(InlineKeyboardButton(text='Generate email'))
+app=Client('Temp-Mail Bot',
+           api_id=API_ID,
+           api_hash=API_HASH,
+           bot_token=BOT_TOKEN)
+email=''
+@app.on_message(filters.command('start'))
+async def start_msg(client,message):
+    await message.reply('hello',
+                        reply_markup=buttons)
+@app.on_callback_query()
+async def mailbox(client,message):
+    response=message.data
+    if response=='generate':
+       global email
+       email = re.get("https://www.1secmail.com/api/v1/?action=genRandomMailbox&count=1").json()[0]
+       await message.edit_message_text('__**Your Temporary E-mail: **__`'+str(email)+'`',
+                                       reply_markup=buttons)
+       print(email)
+    elif response=='refresh':
+        print(email)
         try:
-            data = requests.get(
-                "https://www.1secmail.com/api/v1/?action=getMessages&login=" + email[:email.find(
-                    "@")] + "&domain=" + email[email.find("@") + 1:]).json()
-            if 'id' in data[0]:
-                for i in range(len(data)):
-                    id = data[i]['id']
-                    subject = data[i]['subject']
-                    fromm = data[i]['from']
-                    date = data[i]['date']
-                    if len(subject) > 15:
-                        subject = str(subject[0:15]) + "..."
-                    bkeyboard.add(InlineKeyboardButton(
-                        text=str(subject) + "\n from: " + fromm + " in " + "[id" + str(id) + "][" + str(
-                            email) + "]"))
-                    bot.send_message(message.chat.id,
-                                        "Subject: " + subject + "\n From: " + fromm + "\n Date:" + date,
-                                        reply_markup=bkeyboard)
-                    count = i + 1
-                bot.send_message(message.chat.id, "Here " + str(
-                    count) + " message we're found\nClick on the below button to read the message\n\n Further Queries @riz4d")
-            else:
-                bot.send_message(message.chat.id, 'Nothing found', reply_markup=bkeyboard)
-        except BaseException:
-            bot.send_message(message.chat.id, 'No messages were received...', reply_markup=bkeyboard)
-    elif message.text.lower().find("[id"):
-        try:
-            data = message.text.lower()[message.text.lower().find("[id"):]
-            id = data[data.find("[") + 3:data.find(']')]
-            email = data[data.find("][") + 2:-1]
-            msg = requests.get("https://www.1secmail.com/api/v1/?action=readMessage&login=" + email[:email.find(
-                "@")] + "&domain=" + email[email.find("@") + 1:] + "&id=" + id).json()
-            bot.send_message(message.chat.id,
-                                'Message ✉️\n\n   From: ' + msg['from'] + "\n   Subject: " + msg[
-                                    'subject'] + "\n   Date: " + msg[
-                                    'date'] + "\n   text: " + msg['textBody'])
-        except BaseException:
-            pass
+            if email=='':
+                await message.edit_message_text('Genaerate a email',reply_markup=buttons)
+            else: 
+                getmsg_endp =  "https://www.1secmail.com/api/v1/?action=getMessages&login=" + email[:email.find("@")] + "&domain=" + email[email.find("@") + 1:]
+                print(getmsg_endp)
+                ref_response = re.get(getmsg_endp).json()
+                global idnum
+                idnum=str(ref_response[0]['id'])
+                from_msg=ref_response[0]['from']
+                subject=ref_response[0]['subject']
+                refreshrply='You a message from '+from_msg+'\n\nSubject : '+subject
+                await message.edit_message_text(refreshrply,
+                                                reply_markup=msg_buttons)
+        except:
+            await message.answer('No messages were received..\nin your Mailbox '+email)
+    elif response=='view_msg':
+        msg =re.get("https://www.1secmail.com/api/v1/?action=readMessage&login=" + email[:email.find("@")] + "&domain=" + email[email.find("@") + 1:] + "&id=" + idnum).json()
+        print(msg)
+        from_mail=msg['from']
+        date=msg['date']
+        subjectt=msg['subject']
+        attachments=msg['attachments'][0]
+        body=msg['body']
+        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body
+        await message.edit_message_text(mailbox_view,reply_markup=buttons)
+        print(attachments)
+        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body
+        if attachments == "[]":
+            await message.edit_message_text(mailbox_view,reply_markup=buttons)
+            await message.answer("No Messages Were Recieved..", show_alert=True)
+        else:
+            dlattach=attachments['filename']
+            attc="https://www.1secmail.com/api/v1/?action=download&login=" + email[:email.find("@")] + "&domain=" + email[email.find("@") + 1:] + "&id=" + idnum+"&file="+dlattach
+            print(attc)
+            mailbox_vieww='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body+'\n\n'+'[Download]('+attc+') Attachments'
+            filedl=wget.download(attc)
+            await message.edit_message_text(mailbox_vieww,reply_markup=buttons)
+            os.remove(dlattach)
+app.run()
 
-bot.polling()
 # Stay tuned for more : Instagram
