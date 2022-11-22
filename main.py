@@ -3,7 +3,7 @@
 # Instagram @riz.4d
 from pyrogram import *
 import requests as re
-from Config import *
+
 from pyrogram.types import InlineKeyboardButton,InlineKeyboardMarkup
 import wget
 import os 
