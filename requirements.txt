@@ -1,2 +1,4 @@
-requests==2.25.0
-pyTelegramBotAPI==3.7.2
+pyrogram
+requests
+wget
+os
