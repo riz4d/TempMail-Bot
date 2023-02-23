@@ -32,10 +32,12 @@ app=Client('Temp-Mail Bot',
            api_id=API_ID,
            api_hash=API_HASH,
            bot_token=BOT_TOKEN)
+
 email=''
 @app.on_message(filters.command('start'))
 async def start_msg(client,message):
-    await message.reply('hello',
+    await message.reply("**Hey❕**\n @mysterymailbot is a free service that allows to generates and receive emails at a temporary address that self-destructed after a certain time elapses.\n\n**__ How It Safe's You??**__\n- Using the temporary mail allows you to completely protect your real mailbox against the loss of personal information. Your temporary e-mail address is completely anonymous. Your details: information about your person and users with whom you communicate, IP-address, e-mail address are protected and completely confidential.\n\nFurther Queris @riz4d🌚")
+    await message.reply("**Generate a Email Now❕**",
                         reply_markup=buttons)
 @app.on_callback_query()
 async def mailbox(client,message):
@@ -70,12 +72,14 @@ async def mailbox(client,message):
         from_mail=msg['from']
         date=msg['date']
         subjectt=msg['subject']
-        attachments=msg['attachments'][0]
+        try:
+          attachments=msg['attachments'][0]
+        except:
+            pass
         body=msg['body']
-        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body
+        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\nmessage : \n'+body
         await message.edit_message_text(mailbox_view,reply_markup=buttons)
-        print(attachments)
-        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body
+        mailbox_view='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\nmessage : \n'+body
         if attachments == "[]":
             await message.edit_message_text(mailbox_view,reply_markup=buttons)
             await message.answer("No Messages Were Recieved..", show_alert=True)
@@ -83,10 +87,10 @@ async def mailbox(client,message):
             dlattach=attachments['filename']
             attc="https://www.1secmail.com/api/v1/?action=download&login=" + email[:email.find("@")] + "&domain=" + email[email.find("@") + 1:] + "&id=" + idnum+"&file="+dlattach
             print(attc)
-            mailbox_vieww='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\n\n'+body+'\n\n'+'[Download]('+attc+') Attachments'
+            mailbox_vieww='ID No : '+idnum+'\nFrom : '+from_mail+'\nDate : '+date+'\nSubject : '+subjectt+'\nmessage : \n'+body+'\n\n'+'[Download]('+attc+') Attachments'
             filedl=wget.download(attc)
             await message.edit_message_text(mailbox_vieww,reply_markup=buttons)
             os.remove(dlattach)
 app.run()
 
-# Stay tuned for more : Instagram
+# Stay tuned for more : Instagram[@riz.4d]
