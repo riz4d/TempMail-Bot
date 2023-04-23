@@ -11,16 +11,25 @@ A python oriented telegram bot for generating temporary Emails Developed By [@ri
 ## How Temp Mail Become Safer You?
  ➪  Using the temporary mail allows you to completely protect your real mailbox against the loss of personal information. Your temporary e-mail address is completely anonymous. Your details: information about your person and users with whom you communicate, IP-address, e-mail address are protected and completely confidential.
  
-## Installation
-
-Fork this repository and
-Put the bot token on `main.py` at `bot = telebot.TeleBot('**********************')`
-
 ## Deployment
 
 [![Deploy On Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)](https://heroku.com/deploy?template=https://github.com/riz4d/TempMail-Bot)
 
 [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template?template=https://github.com/riz4d/TempMail-Bot)
+
+## Deploy VPS
+
+put the API_ID,API_HASH,BOT_TOKEN at Config.py
+
+Then
+
+Install Requirements by using
+
+`pip install requirements.txt`
+
+At last Run the Program Using 
+
+`python3 main.py`
 
 ## Issues 
 
