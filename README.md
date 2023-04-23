@@ -35,10 +35,10 @@ At last Run the Program Using
 
 [Submit Issues](https://github.com/riz4d/TempMail-Bot/issues)
 
-## Developer InFo
 
-[![Developer](https://contributors-img.web.app/image?repo=riz4d/TempMail-Bot)](https://github.com/riz4d)
+## Developer
 
-[![Telegram](https://img.shields.io/badge/Telegram-grey?style=for-the-badge&logo=telegram)](https://telegram.me/riz4d)
-
-[![Instagram](https://img.shields.io/badge/InstaGram-grey?style=for-the-badge&logo=Instagram&logoColor=white)](https://instagram.com/riz.4d)
+[![Mohamed Rizad](https://github.com/riz4d.png?size=100)](https://github.com/riz4d) |
+----|
+[Mohamed Rizad](https://t.me/riz4d) |
+Author, Base, Bug Fixes  |
