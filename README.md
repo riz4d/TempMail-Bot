@@ -19,17 +19,37 @@ A python oriented telegram bot for generating temporary Emails Developed By [@ri
 
 ## Deploy VPS
 
-put the API_ID,API_HASH,BOT_TOKEN at Config.py
+#### Configuration:
 
-Then
+```
+put the API_ID, API_HASH, BOT_TOKEN at Config.py
 
-Install Requirements by using
+```
 
-`pip install requirements.txt`
 
-At last Run the Program Using 
+##### First step:
 
-`python3 main.py`
+```sh
+git clone https://github.com/riz4d/TempMail-Bot
+```
+
+##### Second step:
+
+```sh
+cd TempMail-Bot
+```
+
+##### Third step:
+
+```sh
+pip install -r requirements.txt
+```
+
+##### Fourth step:
+
+```sh
+python3 main.py
+```
 
 ## Issues 
 
