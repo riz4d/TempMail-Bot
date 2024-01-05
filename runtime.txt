@@ -1,1 +1,1 @@
-python-3.10.7
+gunicorn app:app & python3
