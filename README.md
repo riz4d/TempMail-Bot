@@ -26,7 +26,6 @@ put the API_ID, API_HASH, BOT_TOKEN at Config.py
 
 ```
 
-
 ##### First step:
 
 ```sh
