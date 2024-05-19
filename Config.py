@@ -1,4 +1,4 @@
-# Fillout The variables in Config.py further queries @riz4d 0n telegram
+import os
 
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 API_ID = int(os.environ.get("API_ID"))
